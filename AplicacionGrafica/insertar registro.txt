@@ -1,0 +1,63 @@
+
+            sql = "INSERT INTO UserData (name_user, lastname_user, address_user, sex_user) VALUES (?,?,?,?)";
+        
+            try { 
+                PreparedStatement pst = cn.prepareStatement(sql);
+                pst.setString(1,nombre);
+                pst.setString(2,apellido);
+                pst.setString(3,direccion);
+                pst.setString(4,sexo);
+                int n = pst.executeUpdate();
+                if (n>0) {
+                    JOptionPane.showMessageDialog(null, "Registro guardado con exito");
+                    bloquear();
+                }
+            } catch (SQLException ex) {
+                    Logger.getLogger(RegistroUsuario.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            
+            sql = "INSERT INTO accountdata (login_user, password_user, type_user, expirepass_user) VALUES (?,?,?,?)";
+        
+            try { 
+                PreparedStatement pst = cn.prepareStatement(sql);
+                pst.setString(1,login);
+                pst.setString(2,pass);
+                pst.setString(3,tipo);
+                pst.setString(4,changePassword);
+                int n = pst.executeUpdate();
+                if (n>0) {
+                    JOptionPane.showMessageDialog(null, "Registro guardado con exito");
+                    bloquear();
+                }
+            } catch (SQLException ex) {
+                    Logger.getLogger(RegistroUsuario.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            
+            if ("Yes".equals(changePassword)){
+            
+                sql = "INSERT INTO passworddata (datepassword_user) VALUES (?)";
+        
+                try { 
+                    PreparedStatement pst = cn.prepareStatement(sql);
+                    pst.setString(1,actual);
+                    int n = pst.executeUpdate();
+                    if (n>0) {
+                        JOptionPane.showMessageDialog(null, "Registro guardado con exito");
+                        bloquear();
+                    }
+                } catch (SQLException ex) {
+                    Logger.getLogger(RegistroUsuario.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+            }
+            
+        }
+
+*************************************************************************
+1._ Si una variable en las tablas es incrementable, como hacer el registro?
+2._ la fecha que sea Tipo DATEen MySQL. Enviar inf tipo DATE desde NetBeans
+
+3._Cambiar pestaña cuando se da click a nuevo 
+4._Acomodar teclas Nuevo, Salir,... *
+5._Modificar interfaz. hacerla personalizada
+6._Acomodar caja de texto de Direccion. *
+
